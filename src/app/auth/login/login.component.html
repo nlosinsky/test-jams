@@ -1,0 +1,43 @@
+<div class="container">
+	<div class="login-form">
+		<h3 class="login-form__title">
+			<fa-icon [icon]="faLock"></fa-icon>
+			Sign in
+		</h3>
+
+		<form class="login-form__form" [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+			<div class="mb-15">
+				<div class="login-form__control-container">
+					<fa-icon [icon]="faAt"></fa-icon>
+					<input type="text"
+					       class="form-control"
+					       placeholder="Email address"
+					       formControlName="email"
+					       [ngClass]="{'has-error': isInvalidField('email')}"
+					>
+				</div>
+
+				<div *ngIf="isInvalidField('email')" class="error-message">*{{form.get('email')?.errors | errorMessage}}</div>
+			</div>
+
+			<div class="mb-15">
+				<div class="login-form__control-container">
+					<fa-icon [icon]="faLock"></fa-icon>
+					<input type="password"
+					       class="form-control"
+					       placeholder="Password"
+					       formControlName="password"
+					       [ngClass]="{'has-error': isInvalidField('password')}"
+					>
+				</div>
+
+				<div *ngIf="isInvalidField('password')" class="error-message">*{{form.get('password')?.errors | errorMessage}}</div>
+			</div>
+
+			<button [disabled]="isSubmitting" type="submit" class="submit-btn">
+				<fa-icon [icon]="faLock"></fa-icon>
+				Login In
+			</button>
+		</form>
+	</div>
+</div>
